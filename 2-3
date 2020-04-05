@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#pragma warning(disable : 4996)
+
+void time_devision(char* s);
+
+int main(void)
+{
+    char str[50];
+    printf("시간을 입력:");
+    scanf("%s", str);
+    time_devision(str);
+    return 0;
+}
+
+void time_devision(char* s)
+
+{
+    int hour, min, sec;
+    char AMPM[5];
+    char time[50] = { NULL, };
+
+    if (strchr(s, ':'))
+    {
+        if (s[4] == ':')
+        {
+            memmove(s + 4, s + 3, 5);
+            memmove(s + 3, "0", 1);
+        }
+    }
+
+    else 
+    {
+        memmove(s + 6, s + 4, 3);
+        memmove(s + 3, s + 2, 2);
+        memmove(s + 2, ":", 1);
+        memmove(s + 5, ":", 1);
+    }
+
+    memmove(time, s, 2);
+    hour = atoi(time);
+    memmove(time, s + 3, 2);
+    min = atoi(time);
+    memmove(time, s + 6, 2);
+    sec = atoi(time);
+
+    if (hour > 23 || min > 59 || sec > 59)
+    {
+        printf("문자열을 잘못 입력하셨습니다\n");
+    }
+
+    if (hour > 12)
+    {
+        strcpy(AMPM, "오후");
+        hour -= 12;
+    }
+    else
+        strcpy(AMPM, "오전");
+    printf("%s %d시 %d분 %d초\n", AMPM, hour, min, sec);
+}
