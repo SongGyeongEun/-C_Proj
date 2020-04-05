@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<time.h>
+#include<conio.h>
+#include<stdlib.h>
+#pragma warning(disable : 4996)
+
+void real_time(struct tm* d, int dif);
+
+int main(void)
+
+{
+
+    time_t now;
+    struct tm* d;
+    now = time(NULL);
+    d = localtime(&now);
+    while (!kbhit())
+    {
+        system("cls");
+        now = time(NULL);
+        d = localtime(&now);
+        printf("서울 동경: ");
+        real_time(d, 0);
+        printf("\n");
+
+        printf("그리니치, 런던 현재 시각: ");
+        real_time(d, -9);
+        printf("\n");
+
+        printf("로마, 파리: ");
+        real_time(d, -8);
+        printf("\n");
+
+        printf("방콕: ");
+        real_time(d, -2);
+        printf("\n");
+
+        printf("홍콩, 베이징: ");
+        real_time(d, -1);
+        printf("\n");
+
+        printf("시드니 멜버른: ");
+        real_time(d, 2);
+        printf("\n");
+
+        printf("로스엔젤레스: ");
+        real_time(d, -17);
+        printf("\n");
+
+        printf("뉴욕: ");
+        real_time(d, -14);
+        printf("\n");
+    }
+
+}
+
+void real_time(struct tm* d, int dif)
+
+{
+    printf("%d시 %d분 %d초 \n", (d->tm_hour) + dif, d->tm_min, d->tm_sec);
+}
