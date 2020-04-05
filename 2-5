@@ -1,0 +1,22 @@
+#include<stdio.h>
+#pragma warning(disable : 4996)
+
+int main(void)
+
+{
+    int money;
+
+    printf("금액입력: ");
+    scanf("%d", &money);
+
+    printf("오만원권: %d개\t", money / 50000);
+    printf("  만원권 : %d개\n", money % 50000 / 10000);
+    printf("오천원권: %d개\t", money % 10000 / 5000);
+    printf("  천원권 : %d개\n", money % 5000 / 1000);
+    printf("오백원권: %d개\t", money % 1000 / 500);
+    printf("  백원권 : %d개\n", money % 500 / 100);
+    printf("오십원권: %d개\t", money % 100 / 50);
+    printf("  십원권 : %d개\n", money % 50 / 10);
+
+    return 0;
+}
