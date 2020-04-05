@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<time.h>
+#include<Windows.h>
+#pragma warning(disable : 4996)
+
+void timer(int sec);
+
+int main(void)
+
+{
+
+    int select;
+    int min, sec;
+
+    printf("1번은 분, 2번은 초(1, 2 중 입력): ");
+    scanf("%d", &select);
+
+    switch (select)
+    {
+    case 1:
+        printf("몇 분 후에 알람이 울리게 할까요?");
+        scanf("%d", &min);
+        min *= 60;
+        timer(min);
+        break;
+    case 2:
+        printf("몇 초 후에 알람이 울리게 할까요?");
+        scanf("%d", &sec);
+        timer(sec);
+        break;
+    }
+    return 0;
+}
+
+void timer(int sec)
+{
+    Sleep(sec * 1000);
+    printf("\a");
+}
