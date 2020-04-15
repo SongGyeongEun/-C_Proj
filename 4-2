@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#pragma warning(disable : 4996)
+
+long bin_to_dec(char num[]);
+long dec_to_octal(long n);
+
+int main(void)
+{
+    char number[20];
+
+    printf("2진수 입력: ");
+    scanf("%s", number);
+    printf("10진수 : %ld\n", bin_to_dec(number));
+    printf("8진수 : %ld\n", dec_to_octal(bin_to_dec(number)));
+    return 0;
+}
+
+long bin_to_dec(char number[])
+{
+    long result = 0, idx = 0;
+    for (int i = (strlen(number) - 1); i >= 0; i--)
+        if (number[idx++] == '1')
+            result += pow(2, i);
+    return result;
+}
+
+long dec_to_octal(long n)
+{
+    if (n <= 7)
+        return n;
+    return dec_to_octal(n / 8) * 10 + n % 8;
+}
