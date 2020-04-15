@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <math.h>
+#pragma warning(disable : 4996)
+
+long dec_to_bin(long n);
+long dec_to_octal(long n);
+
+int main(void)
+{
+	long number;
+	int select;
+	printf("10진 정수 입력: ");
+	scanf("%ld", &number);
+	printf("출력할 진수 입력 \n1. 2진수, 2. 8진수, 3. 16진수 :");
+	scanf("%d", &select);
+
+	switch (select)
+	{
+	case 1:
+		printf("2진수로 바꾸면 : %ld\n", dec_to_bin(number));
+		break;
+	case 2:
+		printf("8진수로 바꾸면 : %lo\n", number, dec_to_octal(number));
+		break;
+	case 3:
+		printf("16진수로 바꾸면 : %lx\n", number);
+		break;
+	}
+	return 0;
+}
+
+long dec_to_bin(long n)
+{
+	if (n <= 1)
+		return n;
+	return dec_to_bin(n / 2) * 10 + n % 2;
+}
+
+long dec_to_octal(long n)
+{
+	if (n <= 7)
+		return n;
+	return dec_to_octal(n / 8) * 10 + n % 8;
+}
